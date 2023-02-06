@@ -1,15 +1,33 @@
-.column {
-    background: antiquewhite;
-    border: solid gray;
-    /*width: 300px;*/
-    height: 500px;
-    float: center; /*Задаем обтекание*/
-    line-height: 120px;/*Высота строки +  верт. центрирования текста*/
-    font-size: 40px;
-    /*background: dodgerblue;*/
-    color: white;
-    margin-top: 60px;
-    width: 320px; /*Фиксируем ширину блока*/
-    margin-right: 10px;
-    text-align: center;
+body{
+    margin: 0;
+    padding: 0;
+    background: lemonchiffon;
+}
+.notes{
+    display: flex;
+    justify-content: space-around;
+}
+.all-cards{
+    display: flex;
+    justify-content: space-around;
+}
+.note{
+    margin: 0 50px 30px;
+}
+.note-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.label-form{
+    color: azure;
+    font-family: Carlito;
+}
+.input-form{
+    width: 200px;
+    hight: 25px;
+    margin-bottom: 15px;
+}
+h2{
+    font-family: "DejaVu Sans Mono";
 }

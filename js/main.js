@@ -152,7 +152,46 @@ Vue.component('columnOne', {
     },
 })
 
-
+Vue.component('columnTwo', {
+    props: {
+        noteTwo: {
+            type: Array,
+            required: false,
+        }
+    },
+    template:`
+       <div class="column">
+            <div class="column-one" v-for="column in noteOne">
+                <h3>{{column.name}}</h3>
+                <span>
+                    <li v-for="task in column.arrayOfTasks">
+                        <strong></strong>
+                        <input type="checkbox"
+                        v-on:change="task.completed=true"
+                        :disabled="task.completed"
+                        v-on:change='column.status +=1'
+                        @change.prevent="changeCol(column)">
+                        <span :class="{done: task,completed}" >{{task.title}}</span>
+                    </li>
+                </span>
+            </div>
+        </div>
+    `,
+    methods: {
+        changeColTwo(noteCard) {
+            let allNotes = 0
+            for(let i = 0; i < 5; i++){
+                if (noteCard.arrayOfTasks[i].title !=null){
+                    allNotes++
+                }
+            }
+            if ((noteCard.status/allNotes)*100===100){
+                noteCard.date=new Date().toLocaleString()
+                eventBus.$emit('thirdColumn',noteCard)
+            }
+        }
+    }
+})
 Vue.component('columnTree')
 
 let app = new Vue({

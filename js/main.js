@@ -161,7 +161,7 @@ Vue.component('columnTwo', {
     },
     template:`
        <div class="column">
-            <div class="column-one" v-for="column in noteOne">
+            <div class="column-one" v-for="column in noteTwo">
                 <h3>{{column.name}}</h3>
                 <span>
                     <li v-for="task in column.arrayOfTasks">
@@ -192,7 +192,33 @@ Vue.component('columnTwo', {
         }
     }
 })
-Vue.component('columnTree')
+Vue.component('columnTree',{
+    props: {
+        noteTree: {
+            type: Array,
+            required: false,
+        }
+    },
+    template:`
+       <div class="column-one">
+            <div class="column-one" v-for="column in noteThree">
+                <h3>{{column.name}}</h3>
+                <span>
+                    <li v-for="task in column.arrayOfTasks">
+                        <strong></strong>
+                        <input type="checkbox"
+                        v-on:change="task.completed=true"
+                        :disabled="task.completed"
+                        v-on:change='column.status +=1'
+                        @change.prevent="changeCol(column)">
+                        <span :class="{done: task,completed}" >{{task.title}}</span>
+                    </li>
+                    <p>Date of the problem solution:<br>{{column.date}}</p>
+                </span>
+            </div>
+        </div>
+    `,
+})
 
 let app = new Vue({
     el: '#app',

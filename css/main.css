@@ -1,41 +1,67 @@
+
 body{
     margin: 0;
     padding: 0;
-    background: lemonchiffon;
+    background: blanchedalmond;
+    /*background-image: url("../img/black-background.jpg");*/
 }
-.notes{
-    display: flex;
-    justify-content: space-around;
+p{
+    font-family: cursive;
+    /*color: red;*/
 }
-.all-cards{
-    display: flex;
-    justify-content: space-around;
+h1{
+    text-align: center;
+    font-family: cursive;
+    /*color: red;*/
+    /*box-shadow: 0 20px 20px #6c6c6c;*/
 }
-.note{
-    margin: 0 50px 30px;
+h2{
+    font-family: cursive;
+    /*color: red;*/
+}
+h3{
+    font-family: cursive;
+    /*color: #ff5757;*/
+}
+li{
+    /*color: #ff5757;*/
 }
 .note-form{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.label-form{
-    color: darkslateblue;
-    font-family: Carlito;
+.form-label{
+    /*color: #ff5757;*/
+    font-family: cursive;
 }
-.input-form{
+.form-input{
+    /*border-radius: 10px;*/
     width: 200px;
-    hight: 25px;
+    height: 25px;
     margin-bottom: 15px;
 }
-h2 h3 p{
-    font-family: "DejaVu Sans Mono";
+#task{
+    margin-bottom: 15px;
 }
-h1{
-    text-align: center;
-    font-family: "DejaVu Sans Mono";
-    /*box-shadow: 0 20px 20px #6c6c6c;*/
+.Notes{
+    display: flex;
+    justify-content: space-around
 }
-li{
-    color: #57b9ff;
+.all-cards{
+    display: flex;
+    justify-content: space-around
+}
+.note{
+    margin: 0 50px 30px;
+}
+.btn{
+    /*border-radius: 15px;*/
+    width: 200px;
+    height: 35px;
+    margin-bottom: 15px;
+    border: none;
+    /*background: linear-gradient(45deg, #ff8585, #ff2828, #410000);*/
+    color: black;
+    font-family: "Droid Sans Mono";
 }

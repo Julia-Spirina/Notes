@@ -1,4 +1,4 @@
-
+let eventBus = new Vue()
 Vue.component('notes', {
     template: `
        <div class="Notes">
@@ -25,7 +25,34 @@ Vue.component('notes', {
             noteThree:[],
         }
     },
+    mounted() {
+        eventBus.$on('firstColumn', noteCard => {
+            if(this.noteOne.length < 3){
+                this.noteOne.push(noteCard)
+                console.log(this.noteOne)
+            }
+        })
+        eventBus.$on('secondColumn', noteCard => {
+            if(this.noteTwo.length < 5){
+                this.noteTwo.push(noteCard)
+                this.noteOne.splice(this.noteOne.indexOf(noteCard), 1)
+                console.log(this.noteTwo)
+            }
 
+        })
+        eventBus.$on('thirdColumn', noteCard => {
+            this.noteThree.push(noteCard)
+            this.noteTwo.splice(this.noteTwo.indexOf(noteCard), 1)
+            console.log(this.noteTwo)
+            console.log(this.noteThree)
+        })
+        eventBus.$on('fromFirstColumnToThird', noteCard => {
+            this.noteThree.push(noteCard)
+            this.noteOne.splice(this.noteOne.indexOf(noteCard), 1)
+
+        })
+
+    },
 
 
 })
@@ -48,7 +75,22 @@ Vue.component('columnOne', {
                 </div>
        </div>`,
     methods: {
+        changeCol(noteCard) {
+            let allNotes = 0
+            for(let i = 0; i < 5; i++){
+                if (noteCard.arrayOfTasks[i].title != null) {
+                    allNotes++
+                }
+            }
+            if (((noteCard.status / allNotes) * 100 >= 50) && (noteCard.status / allNotes) * 100 != 100) {
+                eventBus.$emit('secondColumn', noteCard)
+            }
+            if ((noteCard.status / allNotes) * 100 === 100) {
+                noteCard.date = new Date().toLocaleString()
+                eventBus.$emit('fromFirstColumnToThird', noteCard)
+            }
 
+        },
     },
     props: {
         noteOne:{
@@ -86,7 +128,21 @@ Vue.component('columnTwo', {
         }
 
     },
+    methods: {
+        changeColTwo(noteCard) {
+            let allNotes = 0
+            for(let i = 0; i < 5; i++){
+                if (noteCard.arrayOfTasks[i].title != null) {
+                    allNotes++
+                }
+            }
+            if ((noteCard.status / allNotes) * 100 === 100) {
+                noteCard.date = new Date().toLocaleString()
+                eventBus.$emit('thirdColumn', noteCard)
+            }
 
+        },
+    }
 
 })
 Vue.component('columnThree', {
@@ -172,7 +228,14 @@ Vue.component('note-add', {
 
             }
 
-
+            eventBus.$emit('firstColumn', noteCard),
+                this.name = null,
+                this.arrayOfTasks = null,
+                this.task1 = null,
+                this.task2 = null,
+                this.task3 = null,
+                this.task4 = null,
+                this.task5 = null
         },
 
     },

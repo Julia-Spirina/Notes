@@ -61,3 +61,7 @@ h3{
     color: black;
     font-family: "Droid Sans Mono";
 }
+.container{
+    display: flex;
+    justify-content: space-between;
+}
